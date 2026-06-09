@@ -27,12 +27,14 @@ export function DashboardShell({ children }: DashboardShellProps) {
       </aside>
 
       <header className="sticky top-0 z-40 flex h-20 items-center justify-between border-b border-[#1A2B49]/10 bg-[#FDFBF7]/95 px-5 backdrop-blur-xl lg:hidden">
-        <Logo imageClassName="size-12 rounded-2xl" />
+        <Link href="/dashboard" aria-label="Dashboard LatiOtak">
+          <Logo imageClassName="size-12 rounded-2xl" />
+        </Link>
 
         <button
           type="button"
           onClick={() => setIsMobileOpen(true)}
-          className="flex size-12 items-center justify-center rounded-2xl border border-[#1A2B49]/10 bg-white text-[#1A2B49] shadow-sm transition duration-300 hover:scale-[1.02]"
+          className="flex size-12 items-center justify-center rounded-2xl border border-[#1A2B49]/10 bg-white text-[#1A2B49] shadow-sm transition duration-300 hover:scale-[1.02] hover:border-[#E95B30]/40"
           aria-label="Buka menu dashboard"
         >
           <Menu className="size-6" aria-hidden="true" />
@@ -53,20 +55,26 @@ export function DashboardShell({ children }: DashboardShellProps) {
 
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-[70] w-[300px] bg-[#1A2B49] text-white shadow-2xl transition-transform duration-300 lg:hidden",
+          "fixed inset-y-0 left-0 z-[70] w-[300px] max-w-[86vw] bg-[#1A2B49] text-white shadow-2xl transition-transform duration-300 lg:hidden",
           isMobileOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex h-20 items-center justify-between border-b border-white/10 px-5">
-          <Logo
-            imageClassName="size-12 rounded-2xl bg-white"
-            textClassName="text-white"
-          />
+          <Link
+            href="/dashboard"
+            aria-label="Dashboard LatiOtak"
+            onClick={() => setIsMobileOpen(false)}
+          >
+            <Logo
+              imageClassName="size-12 rounded-2xl bg-white"
+              textClassName="text-white"
+            />
+          </Link>
 
           <button
             type="button"
             onClick={() => setIsMobileOpen(false)}
-            className="flex size-10 items-center justify-center rounded-2xl bg-white/10 text-white"
+            className="flex size-10 items-center justify-center rounded-2xl bg-white/10 text-white transition duration-300 hover:scale-[1.02] hover:bg-white/15"
             aria-label="Tutup menu dashboard"
           >
             <X className="size-5" aria-hidden="true" />
@@ -142,6 +150,7 @@ function SidebarContent({
       <div className="border-t border-white/10 p-4">
         <Link
           href="/dashboard"
+          onClick={onNavigate}
           className="flex min-h-12 items-center gap-3 rounded-2xl px-4 text-sm font-extrabold text-white/65 transition duration-300 hover:bg-white/10 hover:text-white"
         >
           <Settings className="size-5" aria-hidden="true" />
@@ -150,6 +159,7 @@ function SidebarContent({
 
         <Link
           href="/login"
+          onClick={onNavigate}
           className="mt-2 flex min-h-12 items-center gap-3 rounded-2xl px-4 text-sm font-extrabold text-red-300 transition duration-300 hover:bg-red-500/10 hover:text-red-200"
         >
           <LogOut className="size-5" aria-hidden="true" />
