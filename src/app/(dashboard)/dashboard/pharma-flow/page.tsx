@@ -1,15 +1,7 @@
 /** @format */
 
-import { Pill } from "lucide-react";
+import { PharmaFlowPage } from "@/features/pharma-flow/components/pharma-flow-page";
 
-import { DashboardPlaceholderPage } from "@/features/dashboard/components/dashboard-placeholder-page";
-
-export default function PharmaFlowPage() {
-  return (
-    <DashboardPlaceholderPage
-      title="PharmaFlow"
-      description="Halaman untuk mengelola nama obat, dosis, jadwal konsumsi, status sudah diminum, dan riwayat penggunaan obat."
-      icon={Pill}
-    />
-  );
+export default function PharmaFlowRoutePage() {
+  return <PharmaFlowPage />;
 }

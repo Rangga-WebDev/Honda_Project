@@ -42,8 +42,8 @@ export function HealthMonitoringPage() {
       </Link>
 
       <section className="overflow-hidden rounded-[34px] border border-[#1A2B49]/10 bg-white shadow-[0_18px_45px_rgba(26,43,73,0.10)]">
-        <div className="grid gap-0 xl:grid-cols-[1fr_360px]">
-          <div className="space-y-6 p-5 sm:p-8">
+        <div className="grid gap-0 xl:grid-cols-[minmax(0,1fr)_360px]">
+          <div className="min-w-0 space-y-6 p-5 sm:p-8">
             <HealthHeader />
             <MetricGrid />
             <InputPanel />
@@ -88,17 +88,17 @@ function HealthHeader() {
 
 function MetricGrid() {
   return (
-    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-4 sm:grid-cols-2">
       {healthMetricCards.map((metric) => {
         const Icon = metric.icon;
 
         return (
           <div
             key={metric.title}
-            className="rounded-[26px] border border-[#1A2B49]/10 bg-white p-5 shadow-sm"
+            className="min-w-0 rounded-[26px] border border-[#1A2B49]/10 bg-white p-5 shadow-sm"
           >
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex size-13 items-center justify-center rounded-2xl bg-[#E95B30]/10 text-[#E95B30]">
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-[#E95B30]/10 text-[#E95B30]">
                 <Icon className="size-6" aria-hidden="true" />
               </div>
 
@@ -109,8 +109,8 @@ function MetricGrid() {
               {metric.title}
             </p>
 
-            <div className="mt-2 flex items-end gap-2">
-              <h2 className="text-3xl font-extrabold text-[#1A2B49]">
+            <div className="mt-2 flex flex-wrap items-end gap-x-2 gap-y-1">
+              <h2 className="wrap-break-word text-3xl font-extrabold text-[#1A2B49]">
                 {metric.value}
               </h2>
               <p className="pb-1 text-sm font-extrabold text-[#1A2B49]/50">
@@ -148,7 +148,7 @@ function InputPanel() {
         </button>
       </div>
 
-      <div className="mt-5 grid gap-4 md:grid-cols-4">
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
         <DemoInput label="Tekanan Darah" value="120/80" />
         <DemoInput label="Gula Darah" value="110" />
         <DemoInput label="Berat Badan" value="60" />
@@ -160,11 +160,11 @@ function InputPanel() {
 
 function DemoInput({ label, value }: { label: string; value: string }) {
   return (
-    <label className="space-y-2">
+    <label className="flex flex-col gap-2">
       <span className="text-sm font-extrabold text-[#1A2B49]/65">{label}</span>
       <input
         defaultValue={value}
-        className="h-12 w-full rounded-2xl border border-[#1A2B49]/10 bg-white px-4 text-base font-semibold text-[#1A2B49] outline-none transition duration-300 focus:border-[#E95B30]/50 focus:ring-2 focus:ring-[#E95B30]/20"
+        className="h-12 w-full min-w-0 rounded-2xl border border-[#1A2B49]/10 bg-white px-4 text-base font-semibold text-[#1A2B49] outline-none transition duration-300 focus:border-[#E95B30]/50 focus:ring-2 focus:ring-[#E95B30]/20"
       />
     </label>
   );
