@@ -1,15 +1,7 @@
 /** @format */
 
-import { Dumbbell } from "lucide-react";
+import { BrainGymPage } from "@/features/brain-gym/components/brain-gym-page";
 
-import { DashboardPlaceholderPage } from "@/features/dashboard/components/dashboard-placeholder-page";
-
-export default function BrainGymPage() {
-  return (
-    <DashboardPlaceholderPage
-      title="Brain Gym"
-      description="Halaman panduan latihan brain gym bertahap, dilengkapi instruksi sederhana, timer, dan progres latihan."
-      icon={Dumbbell}
-    />
-  );
+export default function BrainGymRoutePage() {
+  return <BrainGymPage />;
 }
