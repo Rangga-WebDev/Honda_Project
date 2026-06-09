@@ -148,7 +148,7 @@ body {
     ),
     linear-gradient(180deg, #fff7f3 0%, #ffffff 48%, #fff2ec 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
 }
 
 button,

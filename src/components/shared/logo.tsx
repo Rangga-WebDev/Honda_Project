@@ -1,35 +1,55 @@
 /** @format */
 
-import { BrainCircuit } from "lucide-react";
+import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
   className?: string;
-  markClassName?: string;
+  imageClassName?: string;
   textClassName?: string;
+  showText?: boolean;
 }
 
-export function Logo({ className, markClassName, textClassName }: LogoProps) {
+export function Logo({
+  className,
+  imageClassName,
+  textClassName,
+  showText = true,
+}: LogoProps) {
   return (
     <div className={cn("flex items-center gap-3", className)}>
       <div
         className={cn(
-          "flex size-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-sm",
-          markClassName,
+          "relative size-14 shrink-0 overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-primary/15",
+          imageClassName,
         )}
       >
-        <BrainCircuit className="size-6" aria-hidden="true" />
+        <Image
+          src="/images/Lati_Otak.png"
+          alt="Logo LatiOtak"
+          fill
+          priority
+          sizes="56px"
+          className="object-contain p-1.5"
+        />
       </div>
 
-      <div className="leading-tight">
-        <p className={cn("text-xl font-bold tracking-tight", textClassName)}>
-          LatiOtak
-        </p>
-        <p className="text-xs font-medium text-muted-foreground">
-          Lansia sehat, aktif, dan aman
-        </p>
-      </div>
+      {showText ? (
+        <div className="leading-tight">
+          <p
+            className={cn(
+              "text-xl font-extrabold tracking-tight text-foreground",
+              textClassName,
+            )}
+          >
+            LatiOtak
+          </p>
+          <p className="text-xs font-medium text-muted-foreground">
+            Lansia sehat, aktif, dan aman
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }
