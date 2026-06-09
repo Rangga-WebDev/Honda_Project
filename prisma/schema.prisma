@@ -1,0 +1,197 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+enum UserRole {
+  INDIVIDUAL
+  INSTITUTION
+  ADMIN
+}
+
+enum IndividualType {
+  ELDERLY
+  FAMILY
+  CAREGIVER
+}
+
+enum InstitutionType {
+  NURSING_HOME
+  CLINIC
+  HEALTH_CENTER
+  COMMUNITY
+}
+
+enum HealthStatus {
+  NORMAL
+  WARNING
+  DANGER
+}
+
+enum MedicationStatus {
+  TAKEN
+  PENDING
+  MISSED
+}
+
+enum SosStatus {
+  ACTIVE
+  RESOLVED
+  PENDING
+}
+
+enum ContactPriority {
+  PRIMARY
+  BACKUP
+  MEDICAL
+}
+
+model User {
+  id              String              @id @default(cuid())
+  name            String
+  email           String              @unique
+  phone           String?
+  passwordHash    String
+  role            UserRole
+  individualType  IndividualType?
+  institutionType InstitutionType?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  elderlyProfile      ElderlyProfile?
+  institutionProfile  InstitutionProfile?
+  familyContacts      FamilyContact[]  @relation("FamilyOwner")
+  linkedFamilyMembers FamilyContact[]  @relation("FamilyMember")
+  sosContacts         SosContact[]     @relation("SosOwner")
+  handledSosLogs      SosLog[]         @relation("SosHandledBy")
+}
+
+model ElderlyProfile {
+  id              String         @id @default(cuid())
+  userId          String         @unique
+  birthDate       DateTime?
+  gender          String?
+  address         String?
+  emergencyNote   String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  healthRecords   HealthRecord[]
+  medications     Medication[]
+  medicationLogs  MedicationLog[]
+  familyContacts  FamilyContact[]
+  sosContacts     SosContact[]
+  sosLogs         SosLog[]
+}
+
+model InstitutionProfile {
+  id              String           @id @default(cuid())
+  userId          String           @unique
+  institutionName String
+  picName         String
+  address         String?
+  city            String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model HealthRecord {
+  id              String        @id @default(cuid())
+  elderlyId       String
+  systolic        Int
+  diastolic       Int
+  bloodSugar      Int?
+  weight          Float?
+  status          HealthStatus  @default(NORMAL)
+  note            String?
+  recordedAt      DateTime      @default(now())
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  elderly         ElderlyProfile @relation(fields: [elderlyId], references: [id], onDelete: Cascade)
+}
+
+model Medication {
+  id              String          @id @default(cuid())
+  elderlyId       String
+  name            String
+  dose            String
+  instruction     String?
+  scheduleTime    String
+  isActive        Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  elderly         ElderlyProfile  @relation(fields: [elderlyId], references: [id], onDelete: Cascade)
+  logs            MedicationLog[]
+}
+
+model MedicationLog {
+  id              String            @id @default(cuid())
+  elderlyId       String
+  medicationId    String
+  status          MedicationStatus  @default(PENDING)
+  note            String?
+  takenAt         DateTime?
+  scheduledAt     DateTime
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  elderly         ElderlyProfile    @relation(fields: [elderlyId], references: [id], onDelete: Cascade)
+  medication      Medication        @relation(fields: [medicationId], references: [id], onDelete: Cascade)
+}
+
+model FamilyContact {
+  id              String          @id @default(cuid())
+  elderlyId       String
+  ownerUserId     String
+  memberUserId    String?
+  name            String
+  relation        String
+  phone           String
+  roleLabel       String?
+  isPrimary       Boolean         @default(false)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  elderly         ElderlyProfile  @relation(fields: [elderlyId], references: [id], onDelete: Cascade)
+  ownerUser       User            @relation("FamilyOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+  memberUser      User?           @relation("FamilyMember", fields: [memberUserId], references: [id], onDelete: SetNull)
+}
+
+model SosContact {
+  id              String          @id @default(cuid())
+  elderlyId       String
+  ownerUserId     String
+  name            String
+  relation        String
+  phone           String
+  priority        ContactPriority @default(BACKUP)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  elderly         ElderlyProfile  @relation(fields: [elderlyId], references: [id], onDelete: Cascade)
+  ownerUser       User            @relation("SosOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+}
+
+model SosLog {
+  id              String          @id @default(cuid())
+  elderlyId       String
+  type            String
+  location        String?
+  status          SosStatus       @default(PENDING)
+  handledByUserId String?
+  triggeredAt     DateTime        @default(now())
+  resolvedAt      DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  elderly         ElderlyProfile  @relation(fields: [elderlyId], references: [id], onDelete: Cascade)
+  handledBy       User?           @relation("SosHandledBy", fields: [handledByUserId], references: [id], onDelete: SetNull)
+}
