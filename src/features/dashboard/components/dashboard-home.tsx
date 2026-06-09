@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 
+import { LucideIcon } from "lucide-react";
 import {
   BellRing,
   CheckCircle2,
   HeartPulse,
-  Pill,
   ShieldAlert,
   UsersRound,
 } from "lucide-react";
@@ -173,7 +173,7 @@ function MetricCard({
   title: string;
   value: string;
   note: string;
-  icon: typeof HeartPulse;
+  icon: LucideIcon;
   tone: "blue" | "orange";
 }) {
   return (
