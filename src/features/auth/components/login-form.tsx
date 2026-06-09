@@ -17,6 +17,7 @@ import { AUTH_ROLE_OPTIONS } from "@/features/auth/constants/auth-options";
 import { AuthRoleCard } from "@/features/auth/components/auth-role-card";
 import { PasswordField } from "@/features/auth/components/password-field";
 import { USER_ROLES } from "@/features/auth/types/auth.types";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   role: z.enum([USER_ROLES.INDIVIDUAL, USER_ROLES.INSTITUTION]),
@@ -29,6 +30,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   const {
     register,
@@ -47,7 +49,6 @@ export function LoginForm() {
   });
 
   const selectedRole = watch("role");
-
   const onSubmit: SubmitHandler<LoginFormValues> = async (values) => {
     setSubmitMessage(null);
 
@@ -55,14 +56,12 @@ export function LoginForm() {
       window.setTimeout(resolve, 650);
     });
 
-    const target =
+    const targetPath =
       values.role === USER_ROLES.INSTITUTION
-        ? "dashboard instansi"
-        : "dashboard individu";
+        ? "/dashboard/institution"
+        : "/dashboard";
 
-    setSubmitMessage(
-      `Login demo berhasil. Setelah Tahap 3 selesai, akun akan diarahkan ke ${target}.`,
-    );
+    router.push(targetPath);
   };
 
   return (

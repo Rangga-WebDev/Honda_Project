@@ -28,6 +28,7 @@ import {
 import { AuthRoleCard } from "@/features/auth/components/auth-role-card";
 import { PasswordField } from "@/features/auth/components/password-field";
 import { USER_ROLES } from "@/features/auth/types/auth.types";
+import { useRouter } from "next/navigation";
 
 const registerSchema = z
   .object({
@@ -114,6 +115,7 @@ type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export function RegisterForm() {
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   const {
     register,
@@ -158,7 +160,6 @@ export function RegisterForm() {
     ],
     [password],
   );
-
   const onSubmit: SubmitHandler<RegisterFormValues> = async (values) => {
     setSubmitMessage(null);
 
@@ -166,12 +167,12 @@ export function RegisterForm() {
       window.setTimeout(resolve, 650);
     });
 
-    const accountType =
-      values.role === USER_ROLES.INSTITUTION ? "instansi" : "individu";
+    const targetPath =
+      values.role === USER_ROLES.INSTITUTION
+        ? "/dashboard/institution"
+        : "/dashboard";
 
-    setSubmitMessage(
-      `Registrasi demo akun ${accountType} berhasil. Data ini belum disimpan karena database akan dibuat pada tahap backend.`,
-    );
+    router.push(targetPath);
   };
 
   return (
