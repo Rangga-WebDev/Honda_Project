@@ -15,6 +15,7 @@ import { StatusBadge } from "@/components/shared/status-badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HEALTH_STATUS } from "@/constants";
+import Link from "next/link";
 
 const featureCards = [
   {
@@ -48,7 +49,9 @@ export default function HomePage() {
     <main className="min-h-screen px-5 py-6 md:px-10 lg:px-16">
       <nav className="mx-auto flex max-w-7xl items-center justify-between">
         <Logo />
-        <Button className="rounded-full">Masuk Dashboard</Button>
+        <Button asChild className="rounded-full">
+          <Link href="/login">Masuk Dashboard</Link>
+        </Button>
       </nav>
 
       <section className="mx-auto grid max-w-7xl gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
@@ -69,8 +72,8 @@ export default function HomePage() {
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" className="rounded-full">
-              Mulai Sekarang
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/register">Mulai Sekarang</Link>
             </Button>
             <Button size="lg" variant="outline" className="rounded-full">
               Lihat Fitur
