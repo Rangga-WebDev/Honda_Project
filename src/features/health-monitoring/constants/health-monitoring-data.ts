@@ -90,7 +90,7 @@ export const healthInsights: HealthInsight[] = [
   {
     title: "Kondisi umum stabil",
     description:
-      "Mayoritas data kesehatan Ibu Ani berada pada rentang normal dalam empat hari terakhir.",
+      "Mayoritas data kesehatan Ibu Besse' berada pada rentang normal dalam empat hari terakhir.",
     status: "normal",
   },
   {

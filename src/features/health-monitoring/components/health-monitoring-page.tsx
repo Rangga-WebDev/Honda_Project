@@ -69,7 +69,7 @@ function HealthHeader() {
         </p>
 
         <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-[#1A2B49] md:text-4xl">
-          Catatan Kesehatan Ibu Ani
+          Catatan Kesehatan Ibu Besse&apos;
         </h1>
 
         <p className="mt-2 max-w-2xl text-base font-semibold leading-7 text-[#1A2B49]/60">
@@ -235,8 +235,8 @@ function ConditionSummary() {
             Kondisi Hari Ini
           </h2>
           <p className="mt-2 text-sm leading-6 text-[#1A2B49]/60">
-            Ibu Ani berada dalam status stabil. Jadwal monitoring berikutnya
-            disarankan tetap dilakukan pada pagi hari.
+            Ibu Besse&apos; berada dalam status stabil. Jadwal monitoring
+            berikutnya disarankan tetap dilakukan pada pagi hari.
           </p>
         </div>
       </div>

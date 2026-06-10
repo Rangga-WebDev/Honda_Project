@@ -15,24 +15,38 @@ export function DashboardHome() {
   return (
     <div className="mx-auto max-w-[1180px]">
       <section className="overflow-hidden rounded-[34px] border border-[#1A2B49]/10 bg-white shadow-[0_18px_45px_rgba(26,43,73,0.10)]">
-        <div className="grid min-h-[720px] lg:grid-cols-[1fr_360px]">
+        <div className="grid min-h-[720px] lg:grid-cols-[2fr_360px]">
           <div className="space-y-6 p-5 sm:p-8">
             <DashboardHeader />
 
             <div className="grid gap-5 md:grid-cols-2">
               <MetricCard
                 title="Tekanan Darah"
-                value="120/80"
+                value="140/80"
                 note="Normal"
                 icon={HeartPulse}
                 tone="blue"
               />
               <MetricCard
-                title="Gula Darah"
-                value="110"
+                title="Kolesterol"
+                value="250"
                 note="mg/dL"
                 icon={HeartPulse}
                 tone="orange"
+              />
+              <MetricCard
+                title="Asam Urat"
+                value="4"
+                note="mg/dL"
+                icon={HeartPulse}
+                tone="red"
+              />
+              <MetricCard
+                title="Gula Darah"
+                value="325"
+                note="mg/dL"
+                icon={HeartPulse}
+                tone="green"
               />
             </div>
 
@@ -77,7 +91,7 @@ export function DashboardHome() {
                       Metformin 500 mg
                     </p>
                     <p className="text-sm font-semibold text-[#1A2B49]/55">
-                      1 Tablet · Saat makan
+                      1 Tablet · Setelah makan
                     </p>
                   </div>
                 </div>
@@ -144,7 +158,7 @@ function DashboardHeader() {
     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-[#1A2B49] md:text-4xl">
-          Selamat Pagi, Ibu Ani 👋
+          Selamat Pagi, Ibu Besse&apos; 👋
         </h1>
         <p className="mt-2 text-base font-semibold text-[#1A2B49]/55">
           Pantau kesehatan, obat, keluarga, dan latihan kognitif hari ini.
@@ -174,7 +188,7 @@ function MetricCard({
   value: string;
   note: string;
   icon: LucideIcon;
-  tone: "blue" | "orange";
+  tone: "blue" | "orange" | "red" | "green";
 }) {
   return (
     <div className="rounded-[24px] border border-[#1A2B49]/10 bg-white p-5 shadow-sm">
@@ -183,7 +197,11 @@ function MetricCard({
           className={
             tone === "blue"
               ? "flex size-14 items-center justify-center rounded-2xl bg-[#1A2B49]/10 text-[#1A2B49]"
-              : "flex size-14 items-center justify-center rounded-2xl bg-[#E95B30]/10 text-[#E95B30]"
+              : tone === "orange"
+                ? "flex size-14 items-center justify-center rounded-2xl bg-[#E95B30]/10 text-[#E95B30]"
+                : tone === "red"
+                  ? "flex size-14 items-center justify-center rounded-2xl bg-[#D2232A]/10 text-[#D2232A]"
+                  : "flex size-14 items-center justify-center rounded-2xl bg-[#22C55E]/10 text-[#22C55E]"
           }
         >
           <Icon className="size-7" aria-hidden="true" />

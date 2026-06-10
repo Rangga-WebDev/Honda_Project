@@ -328,7 +328,7 @@ function IndividualFields({
       <TextField
         id="fullName"
         label="Nama Lengkap"
-        placeholder="Contoh: Ibu Ani"
+        placeholder="Contoh: Ibu Besse'"
         icon={UserRound}
         error={errors.fullName?.message}
         inputProps={register("fullName")}

@@ -26,7 +26,7 @@ export function Logo({
         )}
       >
         <Image
-          src="/images/Lati_Otak.png"
+          src="/images/LatiOtak.png"
           alt="Logo LatiOtak"
           fill
           priority

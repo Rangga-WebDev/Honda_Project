@@ -72,7 +72,7 @@ const institutionStats: InstitutionStat[] = [
 
 const elderlyRows: ElderlyRow[] = [
   {
-    name: "Ibu Ani S.",
+    name: "Ibu Besse' S.",
     room: "Kamar A-02",
     health: "Stabil · 120/80",
     cognitive: "75% Brain Gym",

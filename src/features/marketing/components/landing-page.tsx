@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { MarketingNavbar } from "@/features/marketing/components/marketing-navbar";
+import Image from "next/image";
 interface ServiceItem {
   title: string;
   description: string;
@@ -94,7 +95,7 @@ function HeroSection() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link
               href="/register"
-              className="inline-flex min-h-20 items-center justify-center gap-4 rounded-full bg-[#E95B30] px-10 text-[22px] font-extrabold text-white shadow-[0_16px_36px_rgba(233,91,48,0.28)] transition duration-300 hover:scale-[1.02]"
+              className="inline-flex min-h-20 items-center justify-center gap-4 rounded-full bg-[#E95B30] px-10 text-[12px] font-extrabold text-white shadow-[0_16px_36px_rgba(233,91,48,0.28)] transition duration-300 hover:scale-[1.02]"
             >
               <Heart className="size-8" aria-hidden="true" />
               SCHEDULE A TOUR
@@ -102,7 +103,7 @@ function HeroSection() {
 
             <Link
               href="/login"
-              className="inline-flex min-h-20 items-center justify-center gap-3 rounded-full border border-[#1A2B49]/15 bg-white px-8 text-[20px] font-extrabold text-[#1A2B49] shadow-[0_12px_28px_rgba(26,43,73,0.08)] transition duration-300 hover:scale-[1.02] hover:border-[#E95B30]/40"
+              className="inline-flex min-h-20 items-center justify-center gap-3 rounded-full border border-[#1A2B49]/15 bg-white px-8 text-[18px] font-extrabold text-[#1A2B49] shadow-[0_12px_28px_rgba(26,43,73,0.08)] transition duration-300 hover:scale-[1.02] hover:border-[#E95B30]/40"
             >
               Masuk Dashboard
               <ArrowRight className="size-6" aria-hidden="true" />
@@ -132,45 +133,28 @@ function HeroVisual() {
         LatiOtak Care
       </div>
 
-      <div className="absolute inset-x-8 bottom-8 z-10 rounded-[34px] bg-[#FDFBF7]/95 p-6 shadow-[0_18px_45px_rgba(26,43,73,0.12)]">
-        <div className="grid items-end gap-6 sm:grid-cols-2">
-          <PersonPlaceholder
-            label="Elderly Woman"
-            bodyColor="bg-[#1A2B49]"
-            heightClassName="min-h-[270px]"
+      <div className="absolute inset-x-8 bottom-18 z-10 rounded-[34px] bg-[#FDFBF7]/95 p-6 shadow-[0_18px_45px_rgba(26,43,73,0.12)]">
+        <div className="grid items-center gap-6 sm:grid-cols-2">
+          <Image
+            src="/images/LansiaPria.png"
+            alt="Elderly Man"
+            className="rounded-[20px] object-cover"
+            width={220}
+            height={220}
           />
-          <PersonPlaceholder
-            label="Elderly Man"
-            bodyColor="bg-[#E95B30]"
-            heightClassName="min-h-[315px]"
+
+          <Image
+            src="/images/LansiaWanita.png"
+            alt="Elderly Woman"
+            className="rounded-[20px] object-cover"
+            width={220}
+            height={220}
           />
         </div>
       </div>
 
       <div className="absolute bottom-40 left-14 h-28 w-28 rounded-full bg-[#E95B30]/15 blur-2xl" />
       <div className="absolute right-14 top-28 h-32 w-32 rounded-full bg-[#1A2B49]/10 blur-2xl" />
-    </div>
-  );
-}
-
-function PersonPlaceholder({
-  label,
-  bodyColor,
-  heightClassName,
-}: {
-  label: string;
-  bodyColor: string;
-  heightClassName: string;
-}) {
-  return (
-    <div
-      className={`flex ${heightClassName} flex-col items-center justify-end rounded-[30px] bg-white p-6`}
-    >
-      <div className="size-28 rounded-full bg-[#FFE7DC] ring-8 ring-[#FDFBF7]" />
-      <div className={`mt-4 h-28 w-36 rounded-t-full ${bodyColor}`} />
-      <p className="mt-5 text-center text-[18px] font-extrabold text-[#1A2B49]/70">
-        {label}
-      </p>
     </div>
   );
 }
@@ -249,25 +233,30 @@ function TestimonialSection() {
             dipahami.
           </blockquote>
 
-          <div className="mt-8 h-1 w-24 rounded-full bg-[#E95B30]" />
+          <div className="mt-8 h-1 w-24 rounded-full bg-[#ffffff]" />
 
           <p className="mt-6 text-[22px] font-extrabold text-[#E95B30]">
-            MARGARET L.
+            BESSE&apos;
           </p>
           <p className="mt-1 text-[18px] font-semibold text-[#1A2B49]/70">
-            Resident
+            55 Tahun.
           </p>
         </div>
 
         <div
-          className="mx-auto flex aspect-square w-full max-w-[420px] items-center justify-center rounded-full border-[14px] border-white bg-[#FFE7DC] shadow-[0_18px_45px_rgba(26,43,73,0.10)]"
+          className="mx-auto flex aspect-square w-full max-w-[420px] items-center justify-center rounded-full border-[14px] border-white bg-[#fff]"
           aria-label="Foto resident"
         >
           <div className="text-center">
-            <div className="mx-auto size-32 rounded-full bg-white shadow-[0_12px_28px_rgba(26,43,73,0.08)]" />
-            <div className="mx-auto mt-5 h-24 w-44 rounded-t-full bg-[#1A2B49]" />
+            <Image
+              src="/images/Orang_Tua.png"
+              alt="Elderly Man"
+              className="rounded-full object-cover top-20"
+              width={330}
+              height={330}
+            />
             <p className="mt-6 text-[18px] font-extrabold text-[#1A2B49]/70">
-              Resident Photo
+              Besse, 55 Tahun
             </p>
           </div>
         </div>
@@ -381,7 +370,7 @@ function Footer() {
 
       <div className="px-5 py-6 text-center">
         <p className="text-[16px] font-medium text-[#1A2B49]/60">
-          © 2024 LatiOtak Senior Wellness Community. All rights reserved.
+          © 2026 LatiOtak Senior Wellness Community. All rights reserved.
         </p>
       </div>
     </footer>

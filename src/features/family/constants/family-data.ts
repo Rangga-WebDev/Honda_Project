@@ -53,7 +53,7 @@ export const familyUpdates: FamilyUpdate[] = [
     time: "08.00",
     title: "Kesehatan stabil",
     description:
-      "Tekanan darah Ibu Ani tercatat 120/80 dan gula darah 110 mg/dL.",
+      "Tekanan darah Ibu Besse' tercatat 120/80 dan gula darah 110 mg/dL.",
     icon: HeartPulse,
   },
   {

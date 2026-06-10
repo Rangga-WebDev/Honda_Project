@@ -43,10 +43,10 @@ export const medicationSummaryCards: MedicationSummaryCard[] = [
 export const medicationSchedules: MedicationSchedule[] = [
   {
     id: "schedule-001",
-    time: "08.00",
+    time: "19.00",
     name: "Amlodipin",
     dose: "5 mg",
-    instruction: "1 tablet setelah sarapan",
+    instruction: "1 tablet Setelah makan malam",
     status: "taken",
   },
   {
@@ -54,12 +54,12 @@ export const medicationSchedules: MedicationSchedule[] = [
     time: "12.00",
     name: "Metformin",
     dose: "500 mg",
-    instruction: "1 tablet saat makan siang",
+    instruction: "1 tablet Setelah makan siang",
     status: "pending",
   },
   {
     id: "schedule-003",
-    time: "20.00",
+    time: "21.00",
     name: "Simvastatin",
     dose: "10 mg",
     instruction: "1 tablet sebelum tidur",

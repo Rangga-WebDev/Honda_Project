@@ -74,7 +74,7 @@ function PharmaHeader() {
         </p>
 
         <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-[#1A2B49] md:text-4xl">
-          Jadwal dan Riwayat Obat Ibu Ani
+          Jadwal dan Riwayat Obat Ibu Besse&apos;
         </h1>
 
         <p className="mt-2 max-w-2xl text-base font-semibold leading-7 text-[#1A2B49]/60">
@@ -209,7 +209,7 @@ function QuickInputPanel() {
         <DemoInput label="Nama Obat" value="Metformin" />
         <DemoInput label="Dosis" value="500 mg" />
         <DemoInput label="Waktu" value="12.00" />
-        <DemoInput label="Instruksi" value="Saat makan" />
+        <DemoInput label="Instruksi" value="Setelah Makan" />
       </div>
     </div>
   );
